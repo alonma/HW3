@@ -1,6 +1,6 @@
 # HW3
 # Alon Maharshak and Miri Hazanov
-**First Question**:
+## **First Question**:
 ### At first, we wanted to build a graph based on the "Grey's anatomy" database and extracting the biggest component:
 
 ```{r}
@@ -67,7 +67,7 @@ modularity(community)
 
 
 
-**Second Question**:
+## **Second Question**:
 ### We decided to use the twitter API to get our data, we used the timeline function and with a bit of data preperation we were ready to create a graph:
 
 First we needed to connect to the twitter API.
