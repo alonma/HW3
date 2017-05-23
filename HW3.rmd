@@ -146,7 +146,7 @@ modularity(community)
 
 1. betweenes - Tennis with 459.66275946
 2. closeness - amazing with 0.007462687
-3. Eigencetor - 
+3. Eigencetor - tshirts with 1/74
 
 ### First algorithm is Walktrap
 | Community |  1 | 2 |  3 |  4 | 5 | 6 | 7 | 8 | 9 |
