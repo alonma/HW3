@@ -1,5 +1,5 @@
 # HW3
-
+# Alon Maharshak and Miri Hazanov
 **First Question**:
 ### At first, we wanted to build a graph based on the "Grey's anatomy" database and extracting the biggest component:
 
@@ -93,23 +93,25 @@ we preforemd a series of action to get good data,
 2. remove stop words
 3. remove numbers
 4. remove Punctuation
+5. Remove URLS's
 
-### After that we extracted the last 20 twitts of Barac obama and turend them into Term-Doc adjacency metrix, after that we converted it into a graph.
+### After that we extracted the last 20 twitts of Roger Federer and turend them into Term-Doc adjacency metrix, after that we converted it into a graph.
 
 ```{r}
-Tweets <- userTimeline("barackobama", n=10)
-df = do.call("rbind",lapply(Tweets,as.data.frame))
+rawTweets <- userTimeline("federer_roger", n=20)
+df = do.call("rbind",lapply(rawTweets,as.data.frame))
 myCorpus = Corpus(VectorSource(df$text))
-myCorpus <- map(myCorpus, content_transformer(tolower))
-myCorpus <- map(myCorpus, content_transformer(removePunctuation))
-myCorpus <- map(myCorpus, content_transformer(removeNumbers))
-myCorpus = map(myCorpus, removeWords, stopwords("english"))
+myCorpus <- tm_map(myCorpus, content_transformer(tolower))
+myCorpus <- tm_map(myCorpus, content_transformer(removePunctuation))
+myCorpus <- tm_map(myCorpus, content_transformer(removeNumbers))
+myCorpus = tm_map(myCorpus, removeWords, stopwords("english"))
+removeURL <- function(x) gsub("http[[:alnum:]]*", "", x)
+myCorpus <- tm_map(myCorpus, content_transformer(removeURL))  #??
 terms <- TermDocumentMatrix(myCorpus, control = list(minWordLength = 1))
-terms <- as.matrix(tdm)
+terms <- as.matrix(terms)
 terms[terms>=1] <- 1
 termMatrix <- terms %*% t(terms)
 g <- graph.adjacency(termMatrix, weighted=T, mode = "undirected")
-summary(g)
 g <- simplify(g)
 summary(g)
 plot(g)
@@ -137,3 +139,37 @@ plot(g,  vertex.size=5, vertex.color=community$membership, asp=FALSE)
 sizes(community)
 modularity(community)
 ```
+![Alt text](https://github.com/alonma/HW3/blob/master/g4.JPG "Federer_tweets")
+
+
+### The results that we got:
+
+1. betweenes - Tennis with 459.66275946
+2. closeness - amazing with 0.007462687
+3. Eigencetor - 
+
+| Community |  1 | 2 |  3 |  4 | 5 | 6 | 7 | 8 | 9 |
+|:---------:|:--:|:-:|:--:|:--:|:-:|:-:|---|---|---|
+|    Size   | 38 | 8 | 10 | 13 | 3 | 4 | 5 | 6 | 3 |
+
+**Modularity value** :  0.4631074
+
+![Alt text](https://github.com/alonma/HW3/blob/master/g5.JPG "WalkTrap")
+
+### Second algorithm is edge-betweenness
+
+```{r}
+community <- edge.betweenness.community(g)
+plot(g, layout=default_layout, vertex.size=5, vertex.color=community$membership, asp=FALSE)
+sizes(community)
+modularity(community)
+```
+### The results that we got:
+
+| Community | 1 | 2 |  3 |  4 | 5 | 6 | 7 | 8 | 9  | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20|
+|:---------:|:-:|:-:|:--:|:--:|:-:|:-:|---|---|----|----|----|----|----|----|----|----|----|----|----|---|
+|    Size   | 3 | 8 | 3  | 18 | 4 | 2 | 8 | 3 | 4  | 5  | 2  | 6  | 1  | 3  | 13  | 1  | 1  | 1 | 1  | 3 |
+
+**Modularity value :  0.404236*
+
+![Alt text](https://github.com/alonma/HW3/blob/master/g6.JPG "edge-betweenness")
