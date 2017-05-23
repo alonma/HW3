@@ -171,6 +171,6 @@ modularity(community)
 |:---------:|:-:|:-:|:--:|:--:|:-:|:-:|---|---|----|----|----|----|----|----|----|----|----|----|----|---|
 |    Size   | 3 | 8 | 3  | 18 | 4 | 2 | 8 | 3 | 4  | 5  | 2  | 6  | 1  | 3  | 13  | 1  | 1  | 1 | 1  | 3 |
 
-** Modularity value** :  0.404236
+**Modularity value** :  0.404236
 
 ![Alt text](https://github.com/alonma/HW3/blob/master/g6.JPG "edge-betweenness")
