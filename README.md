@@ -116,6 +116,7 @@ g <- simplify(g)
 summary(g)
 plot(g)
 ```
+![Alt text](https://github.com/alonma/HW3/blob/master/g4.JPG "Federer_tweets")
 
 ### Now we can repeat the assigments from question one on the new graph that we creted, that describing the connection between words in the tweets.
 
@@ -139,7 +140,6 @@ plot(g,  vertex.size=5, vertex.color=community$membership, asp=FALSE)
 sizes(community)
 modularity(community)
 ```
-![Alt text](https://github.com/alonma/HW3/blob/master/g4.JPG "Federer_tweets")
 
 
 ### The results that we got:
@@ -148,6 +148,7 @@ modularity(community)
 2. closeness - amazing with 0.007462687
 3. Eigencetor - 
 
+### First algorithm is Walktrap
 | Community |  1 | 2 |  3 |  4 | 5 | 6 | 7 | 8 | 9 |
 |:---------:|:--:|:-:|:--:|:--:|:-:|:-:|---|---|---|
 |    Size   | 38 | 8 | 10 | 13 | 3 | 4 | 5 | 6 | 3 |
@@ -170,6 +171,6 @@ modularity(community)
 |:---------:|:-:|:-:|:--:|:--:|:-:|:-:|---|---|----|----|----|----|----|----|----|----|----|----|----|---|
 |    Size   | 3 | 8 | 3  | 18 | 4 | 2 | 8 | 3 | 4  | 5  | 2  | 6  | 1  | 3  | 13  | 1  | 1  | 1 | 1  | 3 |
 
-**Modularity value :  0.404236*
+** Modularity value** :  0.404236
 
 ![Alt text](https://github.com/alonma/HW3/blob/master/g6.JPG "edge-betweenness")
